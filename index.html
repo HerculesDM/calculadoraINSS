@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULADORA INSS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="./js/script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="container p-2">
+
+        <div class="p-5 w-75 mx-auto my-auto rounded-4">
+
+            <h1 class="display-6">Calculadora INSS</h1>
+
+            <p class="lead">
+                Digite abaixo o valor da base de cálculo do inss, ou seja, o valor bruto dos vencimentos
+                incidentes a RGPS.
+            </p>
+
+
+            <div class="row">
+
+                <div class="col-5">
+
+                    <!-- input valor base teste-->  
+                    <div class="input-group">
+                        <span class="input-group-text">R$</span>
+                        <input type="text" id="base" class="form-control form-control-lg" placeholder="Valor base"
+                             onkeypress="return teclaBase(event)" autofocus>
+                    </div>
+
+                </div>
+
+                <!-- botoes calcular e limpar -->
+                <div class="col">
+                    <input type="button" class="btn btn-success btn-lg" value="Calcular" id="btn-calcular"
+                        onclick="calcular()">
+                    <a href="./index.html"><input type="button" class="btn btn-warning btn-lg" value="Limpar"
+                            id="btn-limpar" onclick="limpar()"></a>
+                </div>
+
+                <!-- select ano -->
+                <div class="col-3">
+                    <label class="form-label d-inline" for="tabela">Ano:</label>
+                    <select id="tabela" class="form-select form-select-lg w-50 d-inline" onchange="AlterarAno()">
+                        <option value="2023" selected>2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- div receber validacao input base -->
+            <div id="msg" class="text-danger mb-4">&nbsp;</div>
+
+            <!-- resultado do calculo -->
+            <h5 class="display-6" style="display: inline;">Valor INSS: </h5>
+            <h1 style="display: inline;" id="resultado" class="text-danger">&nbsp;</h1>
+
+
+            <!-- detalhes do calculo -->
+            <section id="sec-detalhes">
+                <div class="text-center text-success fw-semibold mt-5">
+                    <p class="lead">Cálculo Detalhado</p>
+                </div>
+
+                <!-- tabela detalhes -->
+                <table id="detalhes" class="table table-sm table-striped">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                Faixa
+                            </th>
+                            <th>
+                                Base
+                            </th>
+                            <th>
+                                Percentual
+                            </th>
+                            <th>
+                                Valor
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr id="fx1" class="d-none">
+                            <td>
+                                1
+                            </td>
+                            <td id="base1">
+
+                            </td>
+                            <td>
+                                7,5%
+                            </td>
+                            <td id="valor1">
+
+                            </td>
+                        </tr>
+
+                        <tr id="fx2" class="d-none">
+                            <td>
+                                2
+                            </td>
+                            <td id="base2">
+
+                            </td>
+                            <td>
+                                9%
+                            </td>
+                            <td id="valor2">
+
+                            </td>
+                        </tr>
+
+                        <tr id="fx3" class="d-none">
+                            <td>
+                                3
+                            </td>
+                            <td id="base3">
+
+                            </td>
+                            <td>
+                                12%
+                            </td>
+                            <td id="valor3">
+
+                            </td>
+                        </tr>
+
+                        <tr id="fx4" class="d-none">
+                            <td>
+                                4
+                            </td>
+                            <td id="base4">
+
+                            </td>
+                            <td>
+                                14%
+                            </td>
+                            <td id="valor4">
+
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr id="fxt" class="d-none">
+                            <th>
+                                Totais
+                            </th>
+                            <th id="total-base">
+
+                            </th>
+                            <th>
+
+                            </th>
+                            <th id="total-resultado">
+
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </section>
+
+
+            <!-- tabelas INSS -->
+            <section id="sec-tabelas-inss" class="mt-5">
+
+                <!-- botoes tabelas -->
+                <div>
+                    <p class="d-inline">
+                        <button class="btn btn-sm btn-primary" id="btn-tab-2022" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#tabela2022" aria-expanded="false" aria-controls="collapseExample"
+                            onclick="cliqueTab2022()">Ver tabela INSS 2022</button>
+                    </p>
+                    <p class="d-inline">
+                        <button class="btn btn-sm btn-primary" id="btn-tab-2023" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#tabela2023" aria-expanded="false" aria-controls="collapseExample"
+                            onclick="cliqueTab2023()">Ver tabela INSS 2023</button>
+                    </p>
+
+                </div>
+
+                <!-- tabelas -->
+                <div>
+                    <!-- tabela inss do ano 2022 -->
+                    <div class="collapse" id="tabela2022">
+                        <div class="text-center text-success fw-semibold mt-4">
+                            <p class="lead">Tabela INSS 2022</p>
+                        </div>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Faixa</th>
+                                    <th>De</th>
+                                    <th>Até</th>
+                                    <th>Percentual</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>R$ 0,01</td>
+                                    <td>R$ 1212,00</td>
+                                    <td>7,5%</td>
+                                </tr>
+
+                                <tr>
+                                    <td>2</td>
+                                    <td>R$ 1212,01</td>
+                                    <td>R$ 2427,35</td>
+                                    <td>9%</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>R$ 2427,36</td>
+                                    <td>R$ 3641,03</td>
+                                    <td>12%</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>R$ 3641,04</td>
+                                    <td>R$ 7087,22</td>
+                                    <td>14%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- tabela inss do ano 2023 -->
+                <div class="collapse" id="tabela2023">
+                    <div class="text-center text-success fw-semibold mt-4">
+                        <p class="lead">Tabela INSS 2023</p>
+                    </div>
+
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Faixa</th>
+                                <th>De</th>
+                                <th>Até</th>
+                                <th>Percentual</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>R$ 0,01</td>
+                                <td>R$ 1302,00</td>
+                                <td>7,5%</td>
+                            </tr>
+
+                            <tr>
+                                <td>2</td>
+                                <td>R$ 1302,01</td>
+                                <td>R$ 2571,29</td>
+                                <td>9%</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>R$ 2571,30</td>
+                                <td>R$ 3856,94</td>
+                                <td>12%</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>R$ 3856,95</td>
+                                <td>R$ 7507,49</td>
+                                <td>14%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+
+        </div>
+    </div>
+
+    <footer class="position-fixed bottom-0 p-0 m-0 end-0">
+        <div class="container">
+            <p class="text-center text-danger p-0 m-0">
+                Copyright &copy; Hércules O. Gonçalves
+            </p>
+        </div>
+    </footer>
+
+    
+    
+</body>
+
+</html>
