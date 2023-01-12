@@ -3,10 +3,10 @@
 AlterarAno(); // chama funcao para exibir  o botao da tabela inss selecionada 
 
 
-//clique no botao calcular
+// funcao que realiza o calculo inss / chamada no evento onClick do botao calcular
 function calcular() {
 
-    document.getElementById("resultado").innerHTML = "";  //limpar resultado
+    limpaValores();  //limpar resultado
 
     // verificar se foi digitado valor
     var strBase = document.getElementById("base").value;
@@ -42,6 +42,8 @@ function calcular() {
 
     // identificar o ano da tabela
     var anoInss = document.getElementById("tabela").value; //recebe ano inss
+
+    
     if (anoInss == 2022) {
 
         // verificar numero de faixas 
@@ -360,7 +362,7 @@ function limpaValores() {
 
 
 
-// exibe/oculta botoes ano
+// exibe/oculta botoes ano / chamada no evento onChange do select Ano
 function AlterarAno() {
 
     if (document.getElementById("tabela").value == 2022) {
