@@ -22,7 +22,7 @@
 
             <p class="lead">
                 Digite abaixo o valor da base de cálculo do inss, ou seja, o valor bruto dos vencimentos
-                incidentes a RGPS.
+                incidentes a RGPS. 
             </p>
 
 
@@ -189,7 +189,60 @@
                             onclick="cliqueTab2023()">Ver tabela INSS 2023</button>
                     </p>
 
+                    <p class="d-inline">
+                        <button class="btn btn-sm btn-danger" id="btn-como-calcular" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#div-como-calcular" aria-expanded="false" aria-controls="collapseExample">Entenda o Cálculo
+                        </button>
+                    </p>
+
                 </div>
+
+               <div class="collapse mt-4" id="div-como-calcular">
+
+                <p>Com o reajuste do teto dos benefícios, as faixas de contribuição dos empregados com carteira assinada, domésticos e
+                trabalhadores avulsos foram atualizadas. Veja abaixo:</p>
+                
+                <p>
+
+                7,5%: para quem ganha até um salário mínimo (R$ 1.302) <br>
+                9%: para quem ganha entre R$ 1.302,01 e R$ 2.571,29 <br>
+                12%: para quem ganha entre R$ 2.571,30 e R$ 3.856,94 <br>
+                14%: para quem ganha entre R$ 3.856,95 e R$ 7.507,49 (quem ganha acima do teto também paga 14%) <br>
+                </p>
+
+                <p>
+                    Vale lembrar que, com a reforma da Previdência de 2019, essas taxas passaram a ser progressivas, ou seja, cobradas
+                    apenas sobre a parcela do salário que se enquadrar em cada faixa, o que faz com que o percentual de fato descontado do
+                    total dos ganhos (a alíquota efetiva) seja menor.
+                </p>
+
+                <p>
+                    
+                    Ou seja, se o trabalhador ganha mais de um salário mínimo, ele paga 7,5% de alíquota de contribuição sobre R$ 1.302 e
+                    outros percentuais no que exceder esse valor.
+                </p>
+                
+                <p>
+                    Por exemplo: um trabalhador que ganha R$ 1.500 pagará 7,5% sobre R$ 1.302 (R$ 97,65), mais 9% sobre os R$ 198 que
+                    excedem esse valor (R$ 17,82), totalizando R$ 115,47 de contribuição.
+                </p>
+                
+                <p>
+                Quem ganha R$ 2.000 pagará 7,5% sobre R$ 1.302 (R$ 97,65), mais 9% sobre R$ 698 (R$ 62,82), totalizando R$ 160,47.
+                
+                Já quem ganha R$ 4.500 terá a seguinte contribuição, seguindo as faixas de valores da tabela acima:
+                </p>
+
+                <p>
+                    Paga 7,5% sobre R$ 1.302: R$ 97,65 de contribuição <br>
+                    Mais 9% sobre R$ 1.269,29, que é a diferença de R$ 2.571,29 de R$ 1.302: R$ 114,23 <br>
+                    Mais 12% sobre R$ 1.285,65, que é a diferença de R$ 3.856,94 de R$ 2.571,29: R$ 154,27 <br>
+                    Mais 14% sobre R$ 643,06, que é a diferença de R$ 4.500,00 de R$ 3.856,94: R$ 90,02 <br> <br>
+                    <b>Total de contribuição: R$ 456,17</b>
+                </p>
+
+               </div>
+
 
                 <!-- tabelas -->
                 <div>
