@@ -13,14 +13,14 @@ function calcular() {
     if (strBase.trim() == "" || strBase.trim() == ",") {
         document.getElementById("msg").innerHTML = "Informe o valor base";
         document.getElementById("base").value = null;
-            exit;
+        exit;
     } else {
         document.getElementById("msg").innerHTML = "&nbsp;";
     }
 
 
     // substituir , por .
-    strBase = strBase.replace(",",".");      
+    strBase = strBase.replace(",", ".");
 
     var base = parseFloat(strBase.trim()); // receber valor base convertido em float    
 
@@ -43,7 +43,7 @@ function calcular() {
     // identificar o ano da tabela
     var anoInss = document.getElementById("tabela").value; //recebe ano inss
 
-    
+
     if (anoInss == 2022) {
 
         // verificar numero de faixas 
@@ -127,124 +127,7 @@ function calcular() {
             document.getElementById("fx4").className = "";
             document.getElementById("fxt").className = "";
 
-        }        
-
-
-        // deixar com duas casas sem arredondamento
-        valor_faixa1 = casasDecimais(valor_faixa1, 2);
-        valor_faixa2 = casasDecimais(valor_faixa2, 2);
-        valor_faixa3 = casasDecimais(valor_faixa3, 2);
-        valor_faixa4 = casasDecimais(valor_faixa4, 2);
-        
-
-        // somar valores faixas na var resultado
-        resultado = valor_faixa1 + valor_faixa2 + valor_faixa3 + valor_faixa4;
-
-        //mostrar valores
-        document.getElementById("resultado").innerHTML = "R$ " + resultado.toFixed(2);
-
-        document.getElementById("base1").innerHTML = base_faixa1.toFixed(2);
-        document.getElementById("base2").innerHTML = base_faixa2.toFixed(2);
-        document.getElementById("base3").innerHTML = base_faixa3.toFixed(2);
-        document.getElementById("base4").innerHTML = base_faixa4.toFixed(2);
-
-        document.getElementById("valor1").innerHTML = valor_faixa1.toFixed(2);
-        document.getElementById("valor2").innerHTML = valor_faixa2.toFixed(2);
-        document.getElementById("valor3").innerHTML = valor_faixa3.toFixed(2);
-        document.getElementById("valor4").innerHTML = valor_faixa4.toFixed(2);
-
-        document.getElementById("total-base").innerHTML = base.toFixed(2);
-        document.getElementById("total-resultado").innerHTML = resultado.toFixed(2);
-
-       // substituir ponto por virgula nos retornos
-        substituir();
-    
-
-
-    } else if (anoInss == 2023) {
-        
-        // verificar numero de faixas 
-        if (base <= 1302) {
-            var num_faixas = 1;
-        } else if (base <= 2571.29) {
-            var num_faixas = 2;
-        } else if (base <= 3856.94) {
-            var num_faixas = 3;
-        } else {
-            var num_faixas = 4;
         }
-
-
-        // fazer calculo de acordo com o número de faixas
-        if (num_faixas == 1) {
-            base_faixa1 = base;
-
-            valor_faixa1 = base_faixa1 * 0.075;
-
-            //exibir faixas do detalhamento
-            document.getElementById("fx1").className = "";
-            document.getElementById("fxt").className = "";
-
-        }
-
-        if (num_faixas == 2) {
-            base_faixa1 = 1302;
-            base_faixa2 = base - 1302;
-
-            valor_faixa1 = base_faixa1 * 0.075;
-            valor_faixa2 = base_faixa2 * 0.09;
-
-
-            //exibir faixas do detalhamento
-            document.getElementById("fx1").className = "";
-            document.getElementById("fx2").className = "";
-            document.getElementById("fxt").className = "";
-        }
-
-        if (num_faixas == 3) {
-            base_faixa1 = 1302;
-            base_faixa2 = 1269.29;
-            base_faixa3 = base - 2571.29;
-
-            valor_faixa1 = base_faixa1 * 0.075;
-            valor_faixa2 = base_faixa2 * 0.09;
-            valor_faixa3 = base_faixa3 * 0.12;
-
-
-            //exibir faixas do detalhamento
-            document.getElementById("fx1").className = "";
-            document.getElementById("fx2").className = "";
-            document.getElementById("fx3").className = "";
-            document.getElementById("fxt").className = "";
-
-        }
-
-        if (num_faixas == 4) {
-
-            //verifica teto
-            if (base > 7507.49) {
-                base = 7507.49;
-            }
-
-            base_faixa1 = 1302;
-            base_faixa2 = 1269.29;
-            base_faixa3 = 1285.65;
-            base_faixa4 = base - 3856.95;
-
-            valor_faixa1 = base_faixa1 * 0.075;
-            valor_faixa2 = base_faixa2 * 0.09;
-            valor_faixa3 = base_faixa3 * 0.12;
-            valor_faixa4 = base_faixa4 * 0.14;
-
-
-            //exibir faixas do detalhamento
-            document.getElementById("fx1").className = "";
-            document.getElementById("fx2").className = "";
-            document.getElementById("fx3").className = "";
-            document.getElementById("fx4").className = "";
-            document.getElementById("fxt").className = "";
-
-        }        
 
 
         // deixar com duas casas sem arredondamento
@@ -253,9 +136,9 @@ function calcular() {
         valor_faixa3 = casasDecimais(valor_faixa3, 2);
         valor_faixa4 = casasDecimais(valor_faixa4, 2);
 
+
         // somar valores faixas na var resultado
         resultado = valor_faixa1 + valor_faixa2 + valor_faixa3 + valor_faixa4;
-       
 
         //mostrar valores
         document.getElementById("resultado").innerHTML = "R$ " + resultado.toFixed(2);
@@ -276,6 +159,190 @@ function calcular() {
         // substituir ponto por virgula nos retornos
         substituir();
 
+
+
+    } else if (anoInss == 2023) {
+
+        // tabela INSS
+        var ini_faixa1 = 0.01;
+        var fim_faixa1 = 1302.00;
+
+        var ini_faixa2 = 1302.01;
+        var fim_faixa2 = 2571.29;
+
+        var ini_faixa3 = 2571.30;
+        var fim_faixa3 = 3856.94;
+
+        var ini_faixa4 = 3856.95;
+        var fim_faixa4 = 7507.49;
+
+
+        // verificar numero de faixas 
+        if (base <= fim_faixa1) {
+            var num_faixas = 1;
+        } else if (base <= fim_faixa2) {
+            var num_faixas = 2;
+        } else if (base <= fim_faixa3) {
+            var num_faixas = 3;
+        } else {
+            var num_faixas = 4;
+        }
+
+
+        // fazer calculo de acordo com o número de faixas
+        if (num_faixas == 1) {
+            base_faixa1 = base;
+
+            valor_faixa1 = base_faixa1 * 0.075;
+
+            //variaveis detalhe base faixa     
+            var detalheBase1 = base_faixa1.toFixed(2);
+
+
+            // se base menor que minimo, faixa residual, senao, não é residual
+            if (base < fim_faixa1) {
+                var faixa1Residual = "Sim";
+            } else {
+                var faixa1Residual = "Não";
+            }
+
+
+            //exibir faixas do detalhamento
+            document.getElementById("fx1").className = "";
+            document.getElementById("fxt").className = "";
+
+        }
+
+        if (num_faixas == 2) {
+            base_faixa1 = fim_faixa1;
+            base_faixa2 = base - fim_faixa1;
+
+            valor_faixa1 = base_faixa1 * 0.075;
+            valor_faixa2 = base_faixa2 * 0.09;
+
+            //variaveis detalhe base faixa
+            var detalheBase1 = fim_faixa1.toFixed(2).toString();
+            var detalheBase2 = base.toFixed(2).toString() + " - " + fim_faixa1.toFixed(2).toString() + " = " + base_faixa2.toFixed(2);
+            var faixa1Residual = "Não";
+            var faixa2Residual = "Sim";
+
+
+
+            //exibir faixas do detalhamento
+            document.getElementById("fx1").className = "";
+            document.getElementById("fx2").className = "";
+            document.getElementById("fxt").className = "";
+        }
+
+        if (num_faixas == 3) {
+            base_faixa1 = fim_faixa1;
+            base_faixa2 = fim_faixa2 - fim_faixa1;
+            base_faixa3 = base - fim_faixa2;
+
+            valor_faixa1 = base_faixa1 * 0.075;
+            valor_faixa2 = base_faixa2 * 0.09;
+            valor_faixa3 = base_faixa3 * 0.12;
+
+
+            //variaveis detalhe base faixa
+            var detalheBase1 = fim_faixa1.toFixed(2);
+            var detalheBase2 = fim_faixa2.toFixed(2).toString() + " - " + fim_faixa1.toFixed(2).toString() + " = " + base_faixa2.toFixed(2);
+            var detalheBase3 = base.toString() + " - " + fim_faixa2.toString() + " = " + base_faixa3.toFixed(2);
+            var faixa1Residual = "Não";
+            var faixa2Residual = "Não";
+            var faixa3Residual = "Sim";
+
+
+            //exibir faixas do detalhamento
+            document.getElementById("fx1").className = "";
+            document.getElementById("fx2").className = "";
+            document.getElementById("fx3").className = "";
+            document.getElementById("fxt").className = "";
+
+        }
+
+        if (num_faixas == 4) {
+
+            //verifica teto
+            if (base > 7507.49) {
+                base = 7507.49;
+            }
+
+            base_faixa1 = fim_faixa1;
+            base_faixa2 = fim_faixa2 - fim_faixa1;
+            base_faixa3 = fim_faixa3 - fim_faixa2;
+            base_faixa4 = base - ini_faixa4;
+
+            valor_faixa1 = base_faixa1 * 0.075;
+            valor_faixa2 = base_faixa2 * 0.09;
+            valor_faixa3 = base_faixa3 * 0.12;
+            valor_faixa4 = base_faixa4 * 0.14;
+
+
+            //variaveis detalhe base faixa
+            var detalheBase1 = fim_faixa1.toFixed(2);
+            var detalheBase2 = fim_faixa2.toFixed(2).toString() + " - " + fim_faixa1.toFixed(2).toString() + " = " + base_faixa2.toFixed(2).toString();
+            var detalheBase3 = fim_faixa3.toFixed(2).toString() + " - " + fim_faixa2.toFixed(2).toString() + " = " + base_faixa3.toFixed(2);
+            var detalheBase4 = base.toFixed(2).toString() + " - " + ini_faixa4.toFixed(2).toString() + " = " + base_faixa4.toFixed(2);
+            var faixa1Residual = "Não";
+            var faixa2Residual = "Não";
+            var faixa3Residual = "Não";
+            if (parseFloat(document.getElementById("base").value) > fim_faixa4) {
+                var faixa4Residual = "Não";
+            } else {
+                var faixa4Residual = "Sim";
+            }
+
+
+
+            //exibir faixas do detalhamento
+            document.getElementById("fx1").className = "";
+            document.getElementById("fx2").className = "";
+            document.getElementById("fx3").className = "";
+            document.getElementById("fx4").className = "";
+            document.getElementById("fxt").className = "";
+
+        }
+
+
+        // deixar com duas casas sem arredondamento
+        valor_faixa1 = casasDecimais(valor_faixa1, 2);
+        valor_faixa2 = casasDecimais(valor_faixa2, 2);
+        valor_faixa3 = casasDecimais(valor_faixa3, 2);
+        valor_faixa4 = casasDecimais(valor_faixa4, 2);
+
+        // somar valores faixas na var resultado
+        resultado = valor_faixa1 + valor_faixa2 + valor_faixa3 + valor_faixa4;
+
+
+        //mostrar valores
+        document.getElementById("resultado").innerHTML = "R$ " + resultado.toFixed(2);
+
+        document.getElementById("residual1").innerHTML = faixa1Residual;
+        document.getElementById("residual2").innerHTML = faixa2Residual;
+        document.getElementById("residual3").innerHTML = faixa3Residual;
+        document.getElementById("residual4").innerHTML = faixa4Residual;
+
+        document.getElementById("base1").innerHTML = detalheBase1;
+        document.getElementById("base2").innerHTML = detalheBase2;
+        document.getElementById("base3").innerHTML = detalheBase3;
+        document.getElementById("base4").innerHTML = detalheBase4;
+
+        document.getElementById("valor1").innerHTML = valor_faixa1.toFixed(2);
+        document.getElementById("valor2").innerHTML = valor_faixa2.toFixed(2);
+        document.getElementById("valor3").innerHTML = valor_faixa3.toFixed(2);
+        document.getElementById("valor4").innerHTML = valor_faixa4.toFixed(2);
+
+        document.getElementById("total-base").innerHTML = base.toFixed(2);
+        document.getElementById("total-resultado").innerHTML = resultado.toFixed(2);
+
+        // substituir ponto por virgula nos retornos  
+        // obs: chamada 3 vezes pois o replace so substitui a primeira ocorrência      
+        substituir();
+        substituir();
+        substituir();
+
+
     }
 
 
@@ -292,10 +359,10 @@ function casasDecimais(num, precisao) {
 
 
 //pressionar tecla no input base
-function teclaBase(event) {    
+function teclaBase(event) {
 
     // limpa valores na tela
-    limpaValores();    
+    limpaValores();
 
     // se teclar Enter, clica no botao calcular
     if (event.charCode == 13) {
@@ -303,11 +370,11 @@ function teclaBase(event) {
     }
 
 
-    // verifica se tecla digitada é numero ou ponto ou virgula e retorna tecla caso verdadeiro
+    // verifica se tecla digitada é numero ou ponto ou virgula e retorna tecla caso verdadeiro   
     var strBase = document.getElementById("base").value;
     if (event.charCode >= 48 && event.charCode <= 57) { // se tecla for numero
         return true;
-    } else if ((event.charCode == 44) && strBase.indexOf(",") == -1) {  // se tecla for virgula  e ainda nao existir virgula. Para não permitir digitar dois pontos no valor
+    } else if ((event.charCode == 44) && strBase.indexOf(",") == -1 && strBase != "") {  // se tecla for virgula  e ainda nao existir virgula e se campo não estiver branco.  Para não permitir digitar dois pontos no valor e nem virgula antes de existir numero digitado
         return true;
     } else {
         return false;
@@ -410,8 +477,8 @@ function substituir() {
 
     document.getElementById("total-base").innerHTML = document.getElementById("total-base").innerHTML.replace(".", ",");
 
-    
-    document.getElementById("resultado").innerHTML = document.getElementById("resultado").innerHTML.replace(".",",");
+
+    document.getElementById("resultado").innerHTML = document.getElementById("resultado").innerHTML.replace(".", ",");
 
     document.getElementById("valor1").innerHTML = document.getElementById("valor1").innerHTML.replace(".", ",");
 
@@ -422,5 +489,5 @@ function substituir() {
     document.getElementById("valor4").innerHTML = document.getElementById("valor4").innerHTML.replace(".", ",");
 
     document.getElementById("total-resultado").innerHTML = document.getElementById("total-resultado").innerHTML.replace(".", ",");
-    
+
 }
