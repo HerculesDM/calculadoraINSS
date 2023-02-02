@@ -3,10 +3,152 @@
 AlterarAno(); // chama funcao para exibir  o botao da tabela inss selecionada 
 
 
+// deixar com duas casas decimais sem arredondar
+function casasDecimais(num, precisao) {
+    var casas = Math.pow(10, precisao);
+    return Math.floor(num * casas) / casas;
+};
+
+
+//pressionar tecla no input base
+function teclaBase(event) {
+
+    // limpa valores na tela
+    limpaValores();
+
+    // se teclar Enter, clica no botao calcular
+    if (event.charCode == 13) {
+        document.getElementById("btn-calcular").click();
+    }
+
+
+    // verifica se tecla digitada é numero ou ponto ou virgula e retorna tecla caso verdadeiro   
+    var strBase = document.getElementById("base").value;
+    if (event.charCode >= 48 && event.charCode <= 57) { // se tecla for numero
+        return true;
+    } else if ((event.charCode == 44) && strBase.indexOf(",") == -1 && strBase != "") {  // se tecla for virgula  e ainda nao existir virgula e se campo não estiver branco.  Para não permitir digitar dois pontos no valor e nem virgula antes de existir numero digitado
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+
+// alterar texto btn tabela 2022
+function cliqueTab2022() {
+    if (document.getElementById("btn-tab-2022").innerHTML == "Ver tabela INSS 2022") {
+        document.getElementById("btn-tab-2022").innerHTML = "Ocultar tabela INSS 2022";
+    } else if (document.getElementById("btn-tab-2022").innerHTML == "Ocultar tabela INSS 2022") {
+        document.getElementById("btn-tab-2022").innerHTML = "Ver tabela INSS 2022";
+    }
+}
+
+// algerar texto btn tabela 2023
+function cliqueTab2023() {
+    if (document.getElementById("btn-tab-2023").innerHTML == "Ver tabela INSS 2023") {
+        document.getElementById("btn-tab-2023").innerHTML = "Ocultar tabela INSS 2023";
+    } else if (document.getElementById("btn-tab-2023").innerHTML == "Ocultar tabela INSS 2023") {
+        document.getElementById("btn-tab-2023").innerHTML = "Ver tabela INSS 2023";
+    }
+}
+
+
+
+// limpar valores da tela
+function limpaValores() {
+    document.getElementById("resultado").innerHTML = "&nbsp;";
+    document.getElementById("base1").innerHTML = "";
+    document.getElementById("base2").innerHTML = "";
+    document.getElementById("base3").innerHTML = "";
+    document.getElementById("base4").innerHTML = "";
+
+    document.getElementById("valor1").innerHTML = "";
+    document.getElementById("valor2").innerHTML = "";
+    document.getElementById("valor3").innerHTML = "";
+    document.getElementById("valor4").innerHTML = "";
+
+    //oculta faixas detalhadas
+    document.getElementById("fx1").className = "d-none";
+    document.getElementById("fx2").className = "d-none";
+    document.getElementById("fx3").className = "d-none";
+    document.getElementById("fx4").className = "d-none";
+    document.getElementById("fxt").className = "d-none";
+
+    //limpa div #msg
+    document.getElementById("msg").innerHTML = "&nbsp;";
+}
+
+
+
+// exibe/oculta botoes ano / chamada no evento onChange do select Ano
+function AlterarAno() {
+
+    if (document.getElementById("tabela").value == 2022) {
+
+        // se tiver exibindo tabela, clica no botao para ocultar 
+        if (document.getElementById("btn-tab-2023").innerHTML == "Ocultar tabela INSS 2023") {
+            document.getElementById("btn-tab-2023").click();
+        }
+
+        document.getElementById("btn-tab-2022").style.display = "inline"; //exibir botao tabela 2022
+        document.getElementById("btn-tab-2023").style.display = "none";   // ocultar botao tabela 2023               
+
+    }
+
+    if (document.getElementById("tabela").value == 2023) {
+
+        // se tiver exibindo tabela, clica no borao para ocultar 
+        if (document.getElementById("btn-tab-2022").innerHTML == "Ocultar tabela INSS 2022") {
+            document.getElementById("btn-tab-2022").click();
+        }
+
+        document.getElementById("btn-tab-2022").style.display = "none";    // ocultar botao tabela 2022
+        document.getElementById("btn-tab-2023").style.display = "inline";  // exibir botao tabela 2023               
+
+    }
+
+    //  limpar calculo da tela
+    limpaValores();
+    document.getElementById("base").value = null;
+
+
+}
+
+
+// substituir ponto por virgula nos retornos
+function substituir() {
+
+    document.getElementById("base1").innerHTML = document.getElementById("base1").innerHTML.replace(".", ",");
+
+    document.getElementById("base2").innerHTML = document.getElementById("base2").innerHTML.replace(".", ",");
+
+    document.getElementById("base3").innerHTML = document.getElementById("base3").innerHTML.replace(".", ",");
+
+    document.getElementById("base4").innerHTML = document.getElementById("base4").innerHTML.replace(".", ",");
+
+    document.getElementById("total-base").innerHTML = document.getElementById("total-base").innerHTML.replace(".", ",");
+
+
+    document.getElementById("resultado").innerHTML = document.getElementById("resultado").innerHTML.replace(".", ",");
+
+    document.getElementById("valor1").innerHTML = document.getElementById("valor1").innerHTML.replace(".", ",");
+
+    document.getElementById("valor2").innerHTML = document.getElementById("valor2").innerHTML.replace(".", ",");
+
+    document.getElementById("valor3").innerHTML = document.getElementById("valor3").innerHTML.replace(".", ",");
+
+    document.getElementById("valor4").innerHTML = document.getElementById("valor4").innerHTML.replace(".", ",");
+
+    document.getElementById("total-resultado").innerHTML = document.getElementById("total-resultado").innerHTML.replace(".", ",");
+
+}
+
+
 // funcao que realiza o calculo inss / chamada no evento onClick do botao calcular
 function calcular() {
 
-    limpaValores();  //limpar resultado
+    limpaValores();  //limpar resultados
 
     // verificar se foi digitado valor
     var strBase = document.getElementById("base").value;
@@ -17,7 +159,6 @@ function calcular() {
     } else {
         document.getElementById("msg").innerHTML = "&nbsp;";
     }
-
 
     // substituir , por .
     strBase = strBase.replace(",", ".");
@@ -341,153 +482,13 @@ function calcular() {
         substituir();
         substituir();
         substituir();
-
-
-    }
-
-
-}
-
-
-
-
-// deixar com duas casas decimais sem arredondar
-function casasDecimais(num, precisao) {
-    var casas = Math.pow(10, precisao);
-    return Math.floor(num * casas) / casas;
-};
-
-
-//pressionar tecla no input base
-function teclaBase(event) {
-
-    // limpa valores na tela
-    limpaValores();
-
-    // se teclar Enter, clica no botao calcular
-    if (event.charCode == 13) {
-        document.getElementById("btn-calcular").click();
-    }
-
-
-    // verifica se tecla digitada é numero ou ponto ou virgula e retorna tecla caso verdadeiro   
-    var strBase = document.getElementById("base").value;
-    if (event.charCode >= 48 && event.charCode <= 57) { // se tecla for numero
-        return true;
-    } else if ((event.charCode == 44) && strBase.indexOf(",") == -1 && strBase != "") {  // se tecla for virgula  e ainda nao existir virgula e se campo não estiver branco.  Para não permitir digitar dois pontos no valor e nem virgula antes de existir numero digitado
-        return true;
-    } else {
-        return false;
     }
 
 }
 
 
-// alterar texto btn tabela 2022
-function cliqueTab2022() {
-    if (document.getElementById("btn-tab-2022").innerHTML == "Ver tabela INSS 2022") {
-        document.getElementById("btn-tab-2022").innerHTML = "Ocultar tabela INSS 2022";
-    } else if (document.getElementById("btn-tab-2022").innerHTML == "Ocultar tabela INSS 2022") {
-        document.getElementById("btn-tab-2022").innerHTML = "Ver tabela INSS 2022";
-    }
-}
-
-// algerar texto btn tabela 2023
-function cliqueTab2023() {
-    if (document.getElementById("btn-tab-2023").innerHTML == "Ver tabela INSS 2023") {
-        document.getElementById("btn-tab-2023").innerHTML = "Ocultar tabela INSS 2023";
-    } else if (document.getElementById("btn-tab-2023").innerHTML == "Ocultar tabela INSS 2023") {
-        document.getElementById("btn-tab-2023").innerHTML = "Ver tabela INSS 2023";
-    }
-}
-
-
-
-// limpar valores da tela
-function limpaValores() {
-    document.getElementById("resultado").innerHTML = "&nbsp;";
-    document.getElementById("base1").innerHTML = "";
-    document.getElementById("base2").innerHTML = "";
-    document.getElementById("base3").innerHTML = "";
-    document.getElementById("base4").innerHTML = "";
-
-    document.getElementById("valor1").innerHTML = "";
-    document.getElementById("valor2").innerHTML = "";
-    document.getElementById("valor3").innerHTML = "";
-    document.getElementById("valor4").innerHTML = "";
-
-    //oculta faixas detalhadas
-    document.getElementById("fx1").className = "d-none";
-    document.getElementById("fx2").className = "d-none";
-    document.getElementById("fx3").className = "d-none";
-    document.getElementById("fx4").className = "d-none";
-    document.getElementById("fxt").className = "d-none";
-
-    //limpa div #msg
-    document.getElementById("msg").innerHTML = "&nbsp;";
-}
-
-
-
-// exibe/oculta botoes ano / chamada no evento onChange do select Ano
-function AlterarAno() {
-
-    if (document.getElementById("tabela").value == 2022) {
-
-        // se tiver exibindo tabela, clica no botao para ocultar 
-        if (document.getElementById("btn-tab-2023").innerHTML == "Ocultar tabela INSS 2023") {
-            document.getElementById("btn-tab-2023").click();
-        }
-
-        document.getElementById("btn-tab-2022").style.display = "inline"; //exibir botao tabela 2022
-        document.getElementById("btn-tab-2023").style.display = "none";   // ocultar botao tabela 2023               
-
-    }
-
-    if (document.getElementById("tabela").value == 2023) {
-
-        // se tiver exibindo tabela, clica no borao para ocultar 
-        if (document.getElementById("btn-tab-2022").innerHTML == "Ocultar tabela INSS 2022") {
-            document.getElementById("btn-tab-2022").click();
-        }
-
-        document.getElementById("btn-tab-2022").style.display = "none";    // ocultar botao tabela 2022
-        document.getElementById("btn-tab-2023").style.display = "inline";  // exibir botao tabela 2023               
-
-    }
-
-    //  limpar calculo da tela
-    limpaValores();
-    document.getElementById("base").value = null;
-
-
-}
-
-
-// substituir ponto por virgula nos retornos
-function substituir() {
-
-    document.getElementById("base1").innerHTML = document.getElementById("base1").innerHTML.replace(".", ",");
-
-    document.getElementById("base2").innerHTML = document.getElementById("base2").innerHTML.replace(".", ",");
-
-    document.getElementById("base3").innerHTML = document.getElementById("base3").innerHTML.replace(".", ",");
-
-    document.getElementById("base4").innerHTML = document.getElementById("base4").innerHTML.replace(".", ",");
-
-    document.getElementById("total-base").innerHTML = document.getElementById("total-base").innerHTML.replace(".", ",");
-
-
-    document.getElementById("resultado").innerHTML = document.getElementById("resultado").innerHTML.replace(".", ",");
-
-    document.getElementById("valor1").innerHTML = document.getElementById("valor1").innerHTML.replace(".", ",");
-
-    document.getElementById("valor2").innerHTML = document.getElementById("valor2").innerHTML.replace(".", ",");
-
-    document.getElementById("valor3").innerHTML = document.getElementById("valor3").innerHTML.replace(".", ",");
-
-    document.getElementById("valor4").innerHTML = document.getElementById("valor4").innerHTML.replace(".", ",");
-
-    document.getElementById("total-resultado").innerHTML = document.getElementById("total-resultado").innerHTML.replace(".", ",");
-
-}
+// gerenciador de eventos
+    // botao calcular
+    var btn_calcular = document.getElementById("btn-calcular");
+    //btn_calcular.onclick = function() {calcular()};
+    btn_calcular.addEventListener("click", function(){calcular();},false);
