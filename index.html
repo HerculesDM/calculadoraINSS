@@ -37,21 +37,20 @@
                         <div class="input-group">
                             <span class="input-group-text">R$</span>
                             <input type="text" id="base" class="form-control form-control-lg" placeholder="Valor base"
-                                onkeypress="return teclaBase(event)" autofocus>
+                                onkeypress="return verificaTecla(event)" autofocus>
                         </div>
                     </div>
 
                     <!-- botoes calcular e limpar -->
                     <div class="col">
                         <input type="button" class="btn btn-success btn-lg" value="Calcular" id="btn-calcular">
-                        <a href="./index.html"><input type="button" class="btn btn-warning btn-lg" value="Limpar"
-                                id="btn-limpar" onclick="limpar()"></a>
+                        <input type="button" class="btn btn-warning btn-lg" value="Limpar" id="btn-limpar">
                     </div>
 
                     <!-- select ano -->
                     <div class="col-3">
                         <label class="form-label d-inline" for="tabela">Ano:</label>
-                        <select id="tabela" class="form-select form-select-lg w-50 d-inline" onchange="AlterarAno()">
+                        <select id="tabela" class="form-select form-select-lg w-50 d-inline">
                             <option value="2023" selected>2023</option>
                             <option value="2022">2022</option>
                         </select>
@@ -186,7 +185,7 @@
 
                             </th>
                             <th>
-                                
+
                             </th>
                             <th id="total-resultado">
 
@@ -206,13 +205,11 @@
                 <div>
                     <p class="d-inline">
                         <button class="btn btn-sm btn-primary" id="btn-tab-2022" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#tabela2022" aria-expanded="false" aria-controls="collapseExample"
-                            onclick="cliqueTab2022()">Ver tabela INSS 2022</button>
+                            data-bs-target="#tabela2022" aria-expanded="false" aria-controls="collapseExample">Ver tabela INSS 2022</button>
                     </p>
                     <p class="d-inline">
                         <button class="btn btn-sm btn-primary" id="btn-tab-2023" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#tabela2023" aria-expanded="false" aria-controls="collapseExample"
-                            onclick="cliqueTab2023()">Ver tabela INSS 2023</button>
+                            data-bs-target="#tabela2023" aria-expanded="false" aria-controls="collapseExample">Ver tabela INSS 2023</button>
                     </p>
 
                     <p class="d-inline">
@@ -376,6 +373,8 @@
 
         </div>
     </div>
+
+
 
     <footer class="position-fixed bottom-0 p-0 m-0 end-0">
         <div class="container">

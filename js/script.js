@@ -3,6 +3,37 @@
 AlterarAno(); // chama funcao para exibir  o botao da tabela inss selecionada 
 
 
+//  **** INICIO EVENTOS ****
+// botao calcular
+var btn_calcular = document.getElementById("btn-calcular");
+//btn_calcular.addEventListener("click", function () { calcular(); }, false);
+btn_calcular.addEventListener("click", calcular);
+
+//select ano
+var select_ano = document.getElementById("tabela");
+//select_ano.addEventListener("input", function(){ AlterarAno() });
+select_ano.addEventListener("input", AlterarAno);
+
+// input base
+var input_base = document.getElementById("base");
+//input_base.addEventListener("keypress", (event) => {return verificaTecla(event) });
+
+
+// botao tabela 2022
+var btn_2022 = document.getElementById("btn-tab-2022");
+btn_2022.addEventListener("click", cliqueTab2022);
+
+//botao tabela 2023
+var btn_2023 = document.getElementById("btn-tab-2023");
+btn_2023.addEventListener("click", cliqueTab2023);
+
+// botao limpar
+var btn_limpar = document.getElementById("btn-limpar");
+btn_limpar.addEventListener("click", function(){limpaValores(); input_base.value = "";});
+
+//  **** FIM EVENTOS ****
+
+
 // deixar com duas casas decimais sem arredondar
 function casasDecimais(num, precisao) {
     var casas = Math.pow(10, precisao);
@@ -11,7 +42,7 @@ function casasDecimais(num, precisao) {
 
 
 //pressionar tecla no input base
-function teclaBase(event) {
+function verificaTecla(event) {
 
     // limpa valores na tela
     limpaValores();
@@ -45,7 +76,7 @@ function cliqueTab2022() {
 }
 
 // algerar texto btn tabela 2023
-function cliqueTab2023() {
+function cliqueTab2023() {    
     if (document.getElementById("btn-tab-2023").innerHTML == "Ver tabela INSS 2023") {
         document.getElementById("btn-tab-2023").innerHTML = "Ocultar tabela INSS 2023";
     } else if (document.getElementById("btn-tab-2023").innerHTML == "Ocultar tabela INSS 2023") {
@@ -57,6 +88,7 @@ function cliqueTab2023() {
 
 // limpar valores da tela
 function limpaValores() {
+    //alert("teste");
     document.getElementById("resultado").innerHTML = "&nbsp;";
     document.getElementById("base1").innerHTML = "";
     document.getElementById("base2").innerHTML = "";
@@ -487,8 +519,5 @@ function calcular() {
 }
 
 
-// gerenciador de eventos
-    // botao calcular
-    var btn_calcular = document.getElementById("btn-calcular");
-    //btn_calcular.onclick = function() {calcular()};
-    btn_calcular.addEventListener("click", function(){calcular();},false);
+
+
