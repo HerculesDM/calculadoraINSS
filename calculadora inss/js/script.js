@@ -369,7 +369,7 @@ function calcular() {
             valor_faixa1 = base_faixa1 * 0.075;
 
             //variaveis detalhe base faixa     
-            var detalheBase1 = base_faixa1.toFixed(2);
+            var detalheBase1 = base_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
 
             // se base menor que minimo, faixa residual, senao, não é residual
@@ -394,8 +394,8 @@ function calcular() {
             valor_faixa2 = base_faixa2 * 0.09;
 
             //variaveis detalhe base faixa
-            var detalheBase1 = fim_faixa1.toFixed(2).toString();
-            var detalheBase2 = base.toFixed(2).toString() + " - " + fim_faixa1.toFixed(2).toString() + " = " + base_faixa2.toFixed(2);
+            var detalheBase1 = fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString();
+            var detalheBase2 = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
             var faixa1Residual = "Não";
             var faixa2Residual = "Sim";
 
@@ -418,9 +418,9 @@ function calcular() {
 
 
             //variaveis detalhe base faixa
-            var detalheBase1 = fim_faixa1.toFixed(2);
-            var detalheBase2 = fim_faixa2.toFixed(2).toString() + " - " + fim_faixa1.toFixed(2).toString() + " = " + base_faixa2.toFixed(2);
-            var detalheBase3 = base.toString() + " - " + fim_faixa2.toString() + " = " + base_faixa3.toFixed(2);
+            var detalheBase1 = fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var detalheBase2 = fim_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var detalheBase3 = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + fim_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa3.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
             var faixa1Residual = "Não";
             var faixa2Residual = "Não";
             var faixa3Residual = "Sim";
@@ -453,10 +453,10 @@ function calcular() {
 
 
             //variaveis detalhe base faixa
-            var detalheBase1 = fim_faixa1.toFixed(2);
-            var detalheBase2 = fim_faixa2.toFixed(2).toString() + " - " + fim_faixa1.toFixed(2).toString() + " = " + base_faixa2.toFixed(2).toString();
-            var detalheBase3 = fim_faixa3.toFixed(2).toString() + " - " + fim_faixa2.toFixed(2).toString() + " = " + base_faixa3.toFixed(2);
-            var detalheBase4 = base.toFixed(2).toString() + " - " + ini_faixa4.toFixed(2).toString() + " = " + base_faixa4.toFixed(2);
+            var detalheBase1 = fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var detalheBase2 = fim_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString();
+            var detalheBase3 = fim_faixa3.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + fim_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa3.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var detalheBase4 = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + ini_faixa4.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa4.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
             var faixa1Residual = "Não";
             var faixa2Residual = "Não";
             var faixa3Residual = "Não";
@@ -489,7 +489,7 @@ function calcular() {
 
 
         //mostrar valores
-        document.getElementById("resultado").innerHTML = "R$ " + resultado.toFixed(2);
+        document.getElementById("resultado").innerHTML = "R$ " + resultado.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
         document.getElementById("residual1").innerHTML = faixa1Residual;
         document.getElementById("residual2").innerHTML = faixa2Residual;
@@ -501,19 +501,19 @@ function calcular() {
         document.getElementById("base3").innerHTML = detalheBase3;
         document.getElementById("base4").innerHTML = detalheBase4;
 
-        document.getElementById("valor1").innerHTML = valor_faixa1.toFixed(2);
-        document.getElementById("valor2").innerHTML = valor_faixa2.toFixed(2);
-        document.getElementById("valor3").innerHTML = valor_faixa3.toFixed(2);
-        document.getElementById("valor4").innerHTML = valor_faixa4.toFixed(2);
+        document.getElementById("valor1").innerHTML = valor_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("valor2").innerHTML = valor_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("valor3").innerHTML = valor_faixa3.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("valor4").innerHTML = valor_faixa4.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-        document.getElementById("total-base").innerHTML = base.toFixed(2);
-        document.getElementById("total-resultado").innerHTML = resultado.toFixed(2);
+        document.getElementById("total-base").innerHTML = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("total-resultado").innerHTML = resultado.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
         // substituir ponto por virgula nos retornos  
         // obs: chamada 3 vezes pois o replace so substitui a primeira ocorrência      
-        substituir();
-        substituir();
-        substituir();
+        // substituir();
+        // substituir();
+        // substituir();
     }
 
 }
