@@ -88,7 +88,7 @@ function cliqueTab2023() {
 
 // limpar valores da tela
 function limpaValores() {
-    //alert("teste");
+    
     document.getElementById("resultado").innerHTML = "&nbsp;";
     document.getElementById("base1").innerHTML = "";
     document.getElementById("base2").innerHTML = "";
@@ -200,6 +200,7 @@ function calcular() {
 
     // inicializa variaveis
     var num_faixas = 0;
+
     var base_faixa1 = 0;
     var base_faixa2 = 0;
     var base_faixa3 = 0;
@@ -509,11 +510,7 @@ function calcular() {
         document.getElementById("total-base").innerHTML = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
         document.getElementById("total-resultado").innerHTML = resultado.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-        // substituir ponto por virgula nos retornos  
-        // obs: chamada 3 vezes pois o replace so substitui a primeira ocorrência      
-        // substituir();
-        // substituir();
-        // substituir();
+        
     }
 
 }
