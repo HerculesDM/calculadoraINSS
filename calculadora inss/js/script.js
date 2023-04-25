@@ -88,7 +88,7 @@ function cliqueTab2023() {
 
 // limpar valores da tela
 function limpaValores() {
-    //alert("teste");
+    
     document.getElementById("resultado").innerHTML = "&nbsp;";
     document.getElementById("base1").innerHTML = "";
     document.getElementById("base2").innerHTML = "";
@@ -147,36 +147,6 @@ function AlterarAno() {
 
 }
 
-
-// substituir ponto por virgula nos retornos
-function substituir() {
-
-    document.getElementById("base1").innerHTML = document.getElementById("base1").innerHTML.replace(".", ",");
-
-    document.getElementById("base2").innerHTML = document.getElementById("base2").innerHTML.replace(".", ",");
-
-    document.getElementById("base3").innerHTML = document.getElementById("base3").innerHTML.replace(".", ",");
-
-    document.getElementById("base4").innerHTML = document.getElementById("base4").innerHTML.replace(".", ",");
-
-    document.getElementById("total-base").innerHTML = document.getElementById("total-base").innerHTML.replace(".", ",");
-
-
-    document.getElementById("resultado").innerHTML = document.getElementById("resultado").innerHTML.replace(".", ",");
-
-    document.getElementById("valor1").innerHTML = document.getElementById("valor1").innerHTML.replace(".", ",");
-
-    document.getElementById("valor2").innerHTML = document.getElementById("valor2").innerHTML.replace(".", ",");
-
-    document.getElementById("valor3").innerHTML = document.getElementById("valor3").innerHTML.replace(".", ",");
-
-    document.getElementById("valor4").innerHTML = document.getElementById("valor4").innerHTML.replace(".", ",");
-
-    document.getElementById("total-resultado").innerHTML = document.getElementById("total-resultado").innerHTML.replace(".", ",");
-
-}
-
-
 // funcao que realiza o calculo inss / chamada no evento onClick do botao calcular
 function calcular() {
 
@@ -200,6 +170,7 @@ function calcular() {
 
     // inicializa variaveis
     var num_faixas = 0;
+
     var base_faixa1 = 0;
     var base_faixa2 = 0;
     var base_faixa3 = 0;
@@ -314,23 +285,22 @@ function calcular() {
         resultado = valor_faixa1 + valor_faixa2 + valor_faixa3 + valor_faixa4;
 
         //mostrar valores
-        document.getElementById("resultado").innerHTML = "R$ " + resultado.toFixed(2);
+        document.getElementById("resultado").innerHTML = "R$ " + resultado.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-        document.getElementById("base1").innerHTML = base_faixa1.toFixed(2);
-        document.getElementById("base2").innerHTML = base_faixa2.toFixed(2);
-        document.getElementById("base3").innerHTML = base_faixa3.toFixed(2);
-        document.getElementById("base4").innerHTML = base_faixa4.toFixed(2);
+        document.getElementById("base1").innerHTML = base_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("base2").innerHTML = base_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("base3").innerHTML = base_faixa3.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("base4").innerHTML = base_faixa4.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-        document.getElementById("valor1").innerHTML = valor_faixa1.toFixed(2);
-        document.getElementById("valor2").innerHTML = valor_faixa2.toFixed(2);
-        document.getElementById("valor3").innerHTML = valor_faixa3.toFixed(2);
-        document.getElementById("valor4").innerHTML = valor_faixa4.toFixed(2);
+        document.getElementById("valor1").innerHTML = valor_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("valor2").innerHTML = valor_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("valor3").innerHTML = valor_faixa3.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("valor4").innerHTML = valor_faixa4.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-        document.getElementById("total-base").innerHTML = base.toFixed(2);
-        document.getElementById("total-resultado").innerHTML = resultado.toFixed(2);
+        document.getElementById("total-base").innerHTML = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("total-resultado").innerHTML = resultado.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-        // substituir ponto por virgula nos retornos
-        substituir();
+       
 
 
 
@@ -509,11 +479,7 @@ function calcular() {
         document.getElementById("total-base").innerHTML = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
         document.getElementById("total-resultado").innerHTML = resultado.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
 
-        // substituir ponto por virgula nos retornos  
-        // obs: chamada 3 vezes pois o replace so substitui a primeira ocorrência      
-        // substituir();
-        // substituir();
-        // substituir();
+        
     }
 
 }
