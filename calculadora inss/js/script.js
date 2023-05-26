@@ -307,9 +307,9 @@ function calcular() {
 
         // tabela INSS
         var ini_faixa1 = 0.01;
-        var fim_faixa1 = 1302.00;
+        var fim_faixa1 = 1320.00;
 
-        var ini_faixa2 = 1302.01;
+        var ini_faixa2 = 1320.01;
         var fim_faixa2 = 2571.29;
 
         var ini_faixa3 = 2571.30;

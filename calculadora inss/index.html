@@ -14,9 +14,9 @@
 
 <body>
 
-    <div class="container p-2">
+    <div class="container p-lg-2">
 
-        <div class="p-5 w-75 mx-auto my-auto rounded-4">
+        <div class="p-lg-5  mx-auto my-auto rounded-4">
 
 
             <header>
@@ -32,7 +32,7 @@
             <section id="sec-entrada-dados">
                 <div class="row">
 
-                    <div class="col-5">
+                    <div class="col-lg-5">
                         <!-- input valor base teste-->
                         <div class="input-group">
                             <span class="input-group-text">R$</span>
@@ -41,14 +41,10 @@
                         </div>
                     </div>
 
-                    <!-- botoes calcular e limpar -->
-                    <div class="col">
-                        <input type="button" class="btn btn-success btn-lg" value="Calcular" id="btn-calcular">
-                        <input type="button" class="btn btn-warning btn-lg" value="Limpar" id="btn-limpar">
-                    </div>
+                    
 
                     <!-- select ano -->
-                    <div class="col-3">
+                    <div class="col mt-3 mt-lg-0">
                         <label class="form-label d-inline" for="tabela">Ano:</label>
                         <select id="tabela" class="form-select form-select-lg w-50 d-inline">
                             <option value="2023" selected>2023</option>
@@ -56,6 +52,14 @@
                         </select>
                     </div>
 
+                </div>
+
+                <div class="row">
+                    <!-- botoes calcular e limpar -->
+                    <div class="col  mt-3">
+                        <input type="button" class="btn btn-success btn-lg" value="Calcular" id="btn-calcular">
+                        <input type="button" class="btn btn-warning btn-lg" value="Limpar" id="btn-limpar">
+                    </div>
                 </div>
 
                 <!-- div receber validacao input base -->
@@ -229,8 +233,8 @@
 
                     <p>
 
-                        7,5%: para quem ganha até um salário mínimo (R$ 1.302) <br>
-                        9%: para quem ganha entre R$ 1.302,01 e R$ 2.571,29 <br>
+                        7,5%: para quem ganha até um salário mínimo (R$ 1.320) <br>
+                        9%: para quem ganha entre R$ 1.320,01 e R$ 2.571,29 <br>
                         12%: para quem ganha entre R$ 2.571,30 e R$ 3.856,94 <br>
                         14%: para quem ganha entre R$ 3.856,95 e R$ 7.507,49 (quem ganha acima do teto também paga 14%)
                         <br>
@@ -342,13 +346,13 @@
                             <tr>
                                 <td>1</td>
                                 <td>R$ 0,01</td>
-                                <td>R$ 1302,00</td>
+                                <td>R$ 1320,00</td>
                                 <td>7,5%</td>
                             </tr>
 
                             <tr>
                                 <td>2</td>
-                                <td>R$ 1302,01</td>
+                                <td>R$ 1320,01</td>
                                 <td>R$ 2571,29</td>
                                 <td>9%</td>
                             </tr>
