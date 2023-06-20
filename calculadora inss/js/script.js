@@ -187,7 +187,7 @@ function calcular() {
     var anoInss = document.getElementById("tabela").value; //recebe ano inss
 
 
-    if (anoInss == 2022) {
+    if (anoInss == '2022') {
 
         // verificar numero de faixas 
         if (base <= 1212) {
@@ -303,13 +303,189 @@ function calcular() {
 
 
 
-    } else if (anoInss == 2023) {
+    } else if (anoInss == '2023') {
 
         // tabela INSS
         var ini_faixa1 = 0.01;
         var fim_faixa1 = 1320.00;
 
         var ini_faixa2 = 1320.01;
+        var fim_faixa2 = 2571.29;
+
+        var ini_faixa3 = 2571.30;
+        var fim_faixa3 = 3856.94;
+
+        var ini_faixa4 = 3856.95;
+        var fim_faixa4 = 7507.49;
+
+
+        // verificar numero de faixas 
+        if (base <= fim_faixa1) {
+            var num_faixas = 1;
+        } else if (base <= fim_faixa2) {
+            var num_faixas = 2;
+        } else if (base <= fim_faixa3) {
+            var num_faixas = 3;
+        } else {
+            var num_faixas = 4;
+        }
+
+
+        // fazer calculo de acordo com o número de faixas
+        if (num_faixas == 1) {
+            base_faixa1 = base;
+
+            valor_faixa1 = base_faixa1 * 0.075;
+
+            //variaveis detalhe base faixa     
+            var detalheBase1 = base_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+
+
+            // se base menor que minimo, faixa residual, senao, não é residual
+            if (base < fim_faixa1) {
+                var faixa1Residual = "Sim";
+            } else {
+                var faixa1Residual = "Não";
+            }
+
+
+            //exibir faixas do detalhamento
+            document.getElementById("fx1").className = "";
+            document.getElementById("fxt").className = "";
+
+        }
+
+        if (num_faixas == 2) {
+            base_faixa1 = fim_faixa1;
+            base_faixa2 = base - fim_faixa1;
+
+            valor_faixa1 = base_faixa1 * 0.075;
+            valor_faixa2 = base_faixa2 * 0.09;
+
+            //variaveis detalhe base faixa
+            var detalheBase1 = fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString();
+            var detalheBase2 = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var faixa1Residual = "Não";
+            var faixa2Residual = "Sim";
+
+
+
+            //exibir faixas do detalhamento
+            document.getElementById("fx1").className = "";
+            document.getElementById("fx2").className = "";
+            document.getElementById("fxt").className = "";
+        }
+
+        if (num_faixas == 3) {
+            base_faixa1 = fim_faixa1;
+            base_faixa2 = fim_faixa2 - fim_faixa1;
+            base_faixa3 = base - fim_faixa2;
+
+            valor_faixa1 = base_faixa1 * 0.075;
+            valor_faixa2 = base_faixa2 * 0.09;
+            valor_faixa3 = base_faixa3 * 0.12;
+
+
+            //variaveis detalhe base faixa
+            var detalheBase1 = fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var detalheBase2 = fim_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var detalheBase3 = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + fim_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa3.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var faixa1Residual = "Não";
+            var faixa2Residual = "Não";
+            var faixa3Residual = "Sim";
+
+
+            //exibir faixas do detalhamento
+            document.getElementById("fx1").className = "";
+            document.getElementById("fx2").className = "";
+            document.getElementById("fx3").className = "";
+            document.getElementById("fxt").className = "";
+
+        }
+
+        if (num_faixas == 4) {
+
+            //verifica teto
+            if (base > 7507.49) {
+                base = 7507.49;
+            }
+
+            base_faixa1 = fim_faixa1;
+            base_faixa2 = fim_faixa2 - fim_faixa1;
+            base_faixa3 = fim_faixa3 - fim_faixa2;
+            base_faixa4 = base - ini_faixa4;
+
+            valor_faixa1 = base_faixa1 * 0.075;
+            valor_faixa2 = base_faixa2 * 0.09;
+            valor_faixa3 = base_faixa3 * 0.12;
+            valor_faixa4 = base_faixa4 * 0.14;
+
+
+            //variaveis detalhe base faixa
+            var detalheBase1 = fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var detalheBase2 = fim_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + fim_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString();
+            var detalheBase3 = fim_faixa3.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + fim_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa3.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var detalheBase4 = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " - " + ini_faixa4.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.').toString() + " = " + base_faixa4.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            var faixa1Residual = "Não";
+            var faixa2Residual = "Não";
+            var faixa3Residual = "Não";
+            if (parseFloat(document.getElementById("base").value) > fim_faixa4) {
+                var faixa4Residual = "Não";
+            } else {
+                var faixa4Residual = "Sim";
+            }
+
+
+
+            //exibir faixas do detalhamento
+            document.getElementById("fx1").className = "";
+            document.getElementById("fx2").className = "";
+            document.getElementById("fx3").className = "";
+            document.getElementById("fx4").className = "";
+            document.getElementById("fxt").className = "";
+
+        }
+
+
+        // deixar com duas casas sem arredondamento
+        valor_faixa1 = casasDecimais(valor_faixa1, 2);
+        valor_faixa2 = casasDecimais(valor_faixa2, 2);
+        valor_faixa3 = casasDecimais(valor_faixa3, 2);
+        valor_faixa4 = casasDecimais(valor_faixa4, 2);
+
+        // somar valores faixas na var resultado
+        resultado = valor_faixa1 + valor_faixa2 + valor_faixa3 + valor_faixa4;
+
+
+        //mostrar valores
+        document.getElementById("resultado").innerHTML = "R$ " + resultado.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+
+        document.getElementById("residual1").innerHTML = faixa1Residual;
+        document.getElementById("residual2").innerHTML = faixa2Residual;
+        document.getElementById("residual3").innerHTML = faixa3Residual;
+        document.getElementById("residual4").innerHTML = faixa4Residual;
+
+        document.getElementById("base1").innerHTML = detalheBase1;
+        document.getElementById("base2").innerHTML = detalheBase2;
+        document.getElementById("base3").innerHTML = detalheBase3;
+        document.getElementById("base4").innerHTML = detalheBase4;
+
+        document.getElementById("valor1").innerHTML = valor_faixa1.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("valor2").innerHTML = valor_faixa2.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("valor3").innerHTML = valor_faixa3.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("valor4").innerHTML = valor_faixa4.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+
+        document.getElementById("total-base").innerHTML = base.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        document.getElementById("total-resultado").innerHTML = resultado.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+
+        
+    }  else if (anoInss == '2023abril') {
+
+        // tabela INSS
+        var ini_faixa1 = 0.01;
+        var fim_faixa1 = 1302.00;
+
+        var ini_faixa2 = 1302.01;
         var fim_faixa2 = 2571.29;
 
         var ini_faixa3 = 2571.30;
