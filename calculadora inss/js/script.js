@@ -127,7 +127,7 @@ function AlterarAno() {
 
     }
 
-    if (document.getElementById("tabela").value == 2023) {
+    if (document.getElementById("tabela").value == 2023 || document.getElementById("tabela").value == '2023abril') {
 
         // se tiver exibindo tabela, clica no borao para ocultar 
         if (document.getElementById("btn-tab-2022").innerHTML == "Ocultar tabela INSS 2022") {
@@ -139,9 +139,11 @@ function AlterarAno() {
 
     }
 
+    
+
     //  limpar calculo da tela
     limpaValores();
-    document.getElementById("base").value = null;
+    //document.getElementById("base").value = null;
 
 
 }
