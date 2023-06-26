@@ -32,21 +32,19 @@
             <section id="sec-entrada-dados">
                 <div class="row">
 
-                    <div class="col-lg-5">
+                    <div class="col-12 col-lg-5">
                         <!-- input valor base teste-->
                         <div class="input-group">
                             <span class="input-group-text">R$</span>
                             <input type="text" id="base" class="form-control form-control-lg" placeholder="Valor base"
                                 onkeypress="return verificaTecla(event)" autofocus>
                         </div>
-                    </div>
-
-                    
+                    </div>                    
 
                     <!-- select ano -->
-                    <div class="col mt-3 mt-lg-0">
+                    <div class="col-12 col-lg-7 mt-3 mt-lg-0">
                         <label class="form-label d-inline" for="tabela">Ano:</label>
-                        <select id="tabela" class="form-select form-select-lg w-50 d-inline">
+                        <select id="tabela" class="form-select form-select-lg d-inline w-75">
                             <option value="2023" selected>2023 - maio a dezembro</option>
                             <option value="2023abril">2023 - janeiro a abril</option>
                             <option value="2022">2022</option>
